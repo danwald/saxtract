@@ -3,7 +3,7 @@
 
 import sys
 import click
-from saxtrack.saxtract import Saxtract
+from .saxtract import Saxtract
 
 
 @click.command()

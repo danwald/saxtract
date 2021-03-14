@@ -1,4 +1,4 @@
-import xml
+import xml.sax
 
 """Main module."""
 '''plagirised from https://www.tutorialspoint.com/python3/python_xml_processing.htm'''
