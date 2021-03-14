@@ -3,17 +3,17 @@
 
 import sys
 import click
-from saxtrack.saxtract import Saxtract
+from .saxtract import Saxtract
 
 
 @click.command()
-def main(args=None):
+@click.argument('input', type=click.File('-', mode='rb'))
+@click.argument('output', type=click.File('-', mode='w'))
+@click.argument('tags', nargs=-1, default=None)
+def main(input, output, tags):
     """Console script for saxtract."""
-    click.echo("Replace this message by putting your code into "
-               "saxtract.cli.main")
-    click.echo("See click documentation at https://click.palletsprojects.com/")
     # override the default ContextHandler
-    handler = Saxtract()
+    handler = Saxtract(tags=tags, insteam=input, outstream=output)
     return 0
 
 
