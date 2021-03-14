@@ -1,4 +1,3 @@
-import sys
 import xml
 
 """Main module."""
@@ -6,7 +5,7 @@ import xml
 
 
 class Saxtract(xml.sax.ContentHandler):
-    def __init__(self, tags=None, instream=sys.stdin, outstream=sys.stdout):
+    def __init__(self, tags, instream, outstream):
         parser = xml.sax.make_parser()
         # turning off namepsaces
         parser.setFeature(xml.sax.handler.feature_namespaces, 0)
