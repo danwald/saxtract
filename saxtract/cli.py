@@ -7,8 +7,8 @@ from .saxtract import Saxtract
 
 
 @click.command()
-@click.argument('input', type=click.File('rb'))
-@click.argument('output', type=click.File('wb'))
+@click.argument('input', type=click.File('-', mode='rb'))
+@click.argument('output', type=click.File('-', mode='w'))
 @click.argument('tags', nargs=-1, default=None)
 def main(input, output, tags):
     """Console script for saxtract."""
