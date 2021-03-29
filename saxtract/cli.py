@@ -3,12 +3,12 @@
 
 import sys
 import click
-from .saxtract import Saxtract
+from saxtract import Saxtract
 
 
 @click.command()
-@click.argument('input', type=click.File('-'))
-@click.argument('output', type=click.File('-'))
+@click.argument('input', type=click.File, default=click.File(mode='r-'))
+@click.argument('output', type=click.File, default=click.File(mode='w-'))
 @click.argument('tags', nargs=-1, default=None)
 def main(input, output, tags):
     """Console script for saxtract."""
