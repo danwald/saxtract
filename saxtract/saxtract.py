@@ -11,10 +11,12 @@ class Saxtract(xml.sax.ContentHandler):
         parser.setFeature(xml.sax.handler.feature_namespaces, 0)
         parser.setContentHandler(self)
 
+        self.tags = tags
+        self.instream = instream
         self.outstream = outstream
         self.current_tag = ''
         self.current_content = ''
-        parser.parse(instream)
+        parser.parse(self.instream)
 
     def _output(self, content):
         if self.outstream:
