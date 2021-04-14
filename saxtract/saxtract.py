@@ -5,7 +5,7 @@ import xml.sax
 
 
 class Saxtract(xml.sax.ContentHandler):
-    def __init__(self, tags, instream, outstream):
+    def __init__(self, tags, instream, outstream, verbose):
         parser = xml.sax.make_parser()
         # turning off namepsaces
         parser.setFeature(xml.sax.handler.feature_namespaces, 0)
@@ -14,8 +14,13 @@ class Saxtract(xml.sax.ContentHandler):
         self.tags = tags
         self.instream = instream
         self.outstream = outstream
+        self.verbose = verbose
+
         self.current_tag = ''
         self.current_content = ''
+        if self.verbose:
+            self._output(f'Tags: {",".join(tags)}')
+
         parser.parse(self.instream)
 
     def _output(self, content):
