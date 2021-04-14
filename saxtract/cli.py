@@ -3,17 +3,17 @@
 
 import sys
 import click
-from saxtract import Saxtract
+from .saxtract import Saxtract
 
 
 @click.command()
-@click.argument('input', type=click.File, default=click.File(mode='r-'))
-@click.argument('output', type=click.File, default=click.File(mode='w-'))
+@click.argument('instream', type=click.File('r'), default=sys.stdin)
+@click.argument('outstream', type=click.File('w'), default=sys.stdout)
 @click.argument('tags', nargs=-1, default=None)
-def main(input, output, tags):
+def main(instream, outstream, tags):
     """Console script for saxtract."""
     # override the default ContextHandler
-    handler = Saxtract(tags=tags, insteam=input, outstream=output)
+    handler = Saxtract(tags=tags, instream=instream, outstream=outstream)
     return 0
 
 
