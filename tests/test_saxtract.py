@@ -9,6 +9,22 @@ from click.testing import CliRunner
 from saxtract import saxtract
 from saxtract import cli
 
+XML_DATA= """
+<foo>
+    <bar>
+        <name>shamrocks<name>
+        <address>lexington;ky;usa;</address>
+    </bar>
+    <bar>
+        <name>irish-village<name>
+        <address>gharoud;dubai;uae;</address>
+    </bar>
+    <bar>
+        <name>garden-on-8<name>
+        <address>dubai-internet-cit;ldubai;uae;</address>
+    </bar>
+</foo>
+"""
 
 @pytest.fixture
 def response():
@@ -29,9 +45,8 @@ def test_content(response):
 def test_command_line_interface():
     """Test the CLI."""
     runner = CliRunner()
-    result = runner.invoke(cli.main)
+    result = runner.invoke(cli.main, input=XML_DATA)
+    pytest.set_trace()
+    assert not result.exception
     assert result.exit_code == 0
-    assert 'saxtract.cli.main' in result.output
-    help_result = runner.invoke(cli.main, ['--help'])
-    assert help_result.exit_code == 0
-    assert '--help  Show this message and exit.' in help_result.output
+    #assert '--help  Show this message and exit.' in help_result.output
