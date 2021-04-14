@@ -7,10 +7,10 @@ from .saxtract import Saxtract
 
 
 @click.command()
-@click.argument('instream', type=click.File('r'), default=sys.stdin)
-@click.argument('outstream', type=click.File('w'), default=sys.stdout)
 @click.argument('tags', nargs=-1, default=None)
-def main(instream, outstream, tags):
+@click.option('--instream', type=click.File('r'), default=sys.stdin)
+@click.option('--outstream', type=click.File('w'), default=sys.stdout)
+def main(tags, instream, outstream):
     """Console script for saxtract."""
     # override the default ContextHandler
     handler = Saxtract(tags=tags, instream=instream, outstream=outstream)
