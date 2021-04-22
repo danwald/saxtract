@@ -35,7 +35,7 @@ class Saxtract(xml.sax.ContentHandler):
 
     # Call when an elements ends
     def endElement(self, tag):
-        if not self.tags or self.current_tag in self.tags:
+        if self.current_tag and not self.tags or self.current_tag in self.tags:
             self._output(f'{self.current_tag}: {self.current_content}')
         self.current_tag = ''
 
