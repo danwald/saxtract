@@ -6,7 +6,7 @@ import xml.sax
 
 class Saxtract(xml.sax.ContentHandler):
     def __init__(self, tags, instream, outstream, verbose):
-        self.tags = tags
+        self.tags = set(tags)
         self.instream = instream
         self.outstream = outstream
         self.verbose = verbose
