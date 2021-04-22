@@ -16,7 +16,7 @@ def test_file_path(autouse=True):
     return Path(__file__).parent / 'data' / 'bars.xml'.absolute()
 
 
-def test_command_line_runs():
+def test_cli_defaults():
     """Test the CLI."""
     runner = CliRunner()
     result = runner.invoke(cli.main, args=['--instream', f'{test_file_path}'])
