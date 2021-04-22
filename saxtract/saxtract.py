@@ -5,10 +5,11 @@ import xml.sax
 
 
 class Saxtract(xml.sax.ContentHandler):
-    def __init__(self, tags, instream, outstream, verbose):
+    def __init__(self, tags, instream, outstream, show_tags, verbose):
         self.tags = set(tags)
         self.instream = instream
         self.outstream = outstream
+        self.show_tags = show_tags
         self.verbose = verbose
 
         self.current_tag = ''
@@ -36,7 +37,10 @@ class Saxtract(xml.sax.ContentHandler):
     # Call when an elements ends
     def endElement(self, tag):
         if self.current_tag and not self.tags or self.current_tag in self.tags:
-            self._output(f'{self.current_tag}: {self.current_content}')
+            if self.show_tags:
+                self._output(f'{self.current_tag}: {self.current_content}')
+            else:
+                self._output(f'{self.current_content}')
         self.current_tag = ''
 
     # Call when a character is read
