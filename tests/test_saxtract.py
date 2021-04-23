@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 """Tests for `saxtract` package."""
+import collections
 import io
 from pathlib import Path
 
@@ -33,3 +34,7 @@ def test_cli_show_tags(runner, test_file_path):
     result = runner.invoke(cli.main, args=['--instream', f'{test_file_path}', '--show-tags'])
     assert not result.exception
     assert result.exit_code == 0
+    out, _ = capsys.readouterr()
+    tokens = collections.Counter(out.split())
+    assert 'name:' in tokens
+    assert 'address:' in tokens
