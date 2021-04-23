@@ -11,22 +11,25 @@ from saxtract import saxtract
 from saxtract import cli
 
 
+@pytest.fixture(autouse=True)
+def runner():
+    return CliRunner()
+
+
 @pytest.fixture
 def test_file_path():
     return (Path(__file__).parent / 'data' / 'bars.xml').absolute()
 
 
-def test_cli_defaults(test_file_path):
+def test_cli_defaults(runner, test_file_path):
     """Test the CLI."""
-    runner = CliRunner()
     result = runner.invoke(cli.main, args=['--instream', f'{test_file_path}'])
     assert not result.exception
     assert result.exit_code == 0
 
 
-def test_cli_show_tags(test_file_path):
+def test_cli_show_tags(runner, test_file_path):
     """Test the CLI."""
-    runner = CliRunner()
     result = runner.invoke(cli.main, args=['--instream', f'{test_file_path}', '--show-tags'])
     assert not result.exception
     assert result.exit_code == 0
