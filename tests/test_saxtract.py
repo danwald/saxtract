@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 
 """Tests for `saxtract` package."""
-import collections
-import io
 from pathlib import Path
 
 import pytest
 from click.testing import CliRunner
 
-from saxtract import saxtract
 from saxtract import cli
 
 
@@ -27,14 +24,3 @@ def test_cli_defaults(runner, test_file_path):
     result = runner.invoke(cli.main, args=['--instream', f'{test_file_path}'])
     assert not result.exception
     assert result.exit_code == 0
-
-
-def test_cli_show_tags(runner, test_file_path):
-    """Test the CLI."""
-    result = runner.invoke(cli.main, args=['--instream', f'{test_file_path}', '--show-tags'])
-    assert not result.exception
-    assert result.exit_code == 0
-    out, _ = capsys.readouterr()
-    tokens = collections.Counter(out.split())
-    assert 'name:' in tokens
-    assert 'address:' in tokens
