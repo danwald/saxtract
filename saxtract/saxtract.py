@@ -5,10 +5,11 @@ import xml.sax
 
 
 class Saxtract(xml.sax.ContentHandler):
-    def __init__(self, tags, instream, outstream, show_tags, verbose):
+    def __init__(self, tags, instream, outstream, child_tag, show_tags, verbose):
         self.tags = set(tags)
         self.instream = instream
         self.outstream = outstream
+        self.child_tag = child_tag
         self.show_tags = show_tags
         self.verbose = verbose
 
@@ -28,7 +29,7 @@ class Saxtract(xml.sax.ContentHandler):
 
     def _output(self, content):
         if self.outstream:
-            self.outstream.write(f'\n{content}')
+            self.outstream.write(f'{content},')
 
     # Call when an element starts
     def startElement(self, tag, attributes):
@@ -41,6 +42,9 @@ class Saxtract(xml.sax.ContentHandler):
                 self._output(f'{self.current_tag}: {self.current_content}')
             else:
                 self._output(f'{self.current_content}')
+        if tag == self.child_tag:
+            self._output('\n')
+
         self.current_tag = ''
 
     # Call when a character is read
