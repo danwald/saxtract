@@ -29,7 +29,7 @@ class Saxtract(xml.sax.ContentHandler):
 
     def _output(self, content):
         if self.outstream:
-            self.outstream.write(f'{content},')
+            self.outstream.write(f'{content}')
 
     # Call when an element starts
     def startElement(self, tag, attributes):
@@ -39,9 +39,10 @@ class Saxtract(xml.sax.ContentHandler):
     def endElement(self, tag):
         if self.current_tag and not self.tags or self.current_tag in self.tags:
             if self.show_tags:
-                self._output(f'{self.current_tag}: {self.current_content}')
+                self._output(f'{self.current_tag}: {self.current_content},')
             else:
-                self._output(f'{self.current_content}')
+                if self.current_content:
+                    self._output(f'{self.current_content},')
         if tag == self.child_tag:
             self._output('\n')
 
