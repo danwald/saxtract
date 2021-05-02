@@ -35,11 +35,14 @@ class Saxtract(xml.sax.ContentHandler):
     def startElement(self, tag, attributes):
         self.current_tag = tag
 
+    def _relevant_data(self, struct, data):
+        return True if data in struct or not struct else False
+
     def _add_newline(self, tag):
         return True if tag == self.child_tag else False
 
     def _show_tag(self, tag):
-        return True if all([tag, self.show_tags, (not self.tags or tag in self.tags)] else False
+        return True if all([tag, self.show_tags, self._relevant_data(self.tags, tag)]) else False
 
     def _show_content(self):
         return True if self.current_content else False
@@ -57,5 +60,5 @@ class Saxtract(xml.sax.ContentHandler):
 
     # Call when a character is read
     def characters(self, content):
-        if not self.tags or self.current_tag in self.tags:
+        if self._relevant_data(self.tags, self.current_tag):
             self.current_content += content
