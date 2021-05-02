@@ -12,6 +12,7 @@ class Saxtract(xml.sax.ContentHandler):
         self.child_tag = child_tag
         self.show_tags = show_tags
         self.verbose = verbose
+        self.ran = False
 
         self.current_tag = ''
         self.current_content = ''
@@ -19,7 +20,11 @@ class Saxtract(xml.sax.ContentHandler):
             self._output(f'Tags: {",".join(tags)}')
 
         self._init_parser()
-        self.parser.parse(self.instream)
+
+    def start(self):
+        if not self.ran:
+            self.ran = True
+            self.parser.parse(self.instream)
 
     def _init_parser(self):
         self.parser = xml.sax.make_parser()
