@@ -35,20 +35,27 @@ class Saxtract(xml.sax.ContentHandler):
     def startElement(self, tag, attributes):
         self.current_tag = tag
 
+    def _add_newline(self, tag):
+        return True if tag == self.child_tag else False
+
+    def _show_tag(self, tag):
+        return True if all([tag, self.show_tags, (not self.tags or tag in self.tags)] else False
+
+    def _show_content(self):
+        return True if self.current_content else False
+
     # Call when an elements ends
     def endElement(self, tag):
-        if self.current_tag and not self.tags or self.current_tag in self.tags:
-            if self.show_tags:
-                self._output(f'{self.current_tag}: {self.current_content},')
-            else:
-                if self.current_content:
-                    self._output(f'{self.current_content},')
-        if tag == self.child_tag:
+        if self._show_tag(tag):
+            self._output(f'{self.current_tag}: ')
+        if self._show_content():
+            self._output(f'{self.current_content},')
+        if self._add_newline(tag):
             self._output('\n')
 
-        self.current_tag = ''
+        self.current_tag = self.current_content = ''
 
     # Call when a character is read
     def characters(self, content):
         if not self.tags or self.current_tag in self.tags:
-            self.current_content = content
+            self.current_content += content
