@@ -21,36 +21,15 @@ class Saxtract(xml.sax.ContentHandler):
 
         self._init_parser()
 
-    def start(self):
-        if not self.ran:
-            self.ran = True
-            self.parser.parse(self.instream)
-
     def _init_parser(self):
         self.parser = xml.sax.make_parser()
         # turning off namepsaces
         self.parser.setFeature(xml.sax.handler.feature_namespaces, 0)
         self.parser.setContentHandler(self)
 
-    def _output(self, content):
-        if self.outstream:
-            self.outstream.write(f'{content}')
-
-    # Call when an element starts
+        # Call when an element starts
     def startElement(self, tag, attributes):
         self.current_tag = tag
-
-    def _relevant_data(self, struct, data):
-        return True if data in struct or not struct else False
-
-    def _add_newline(self, tag):
-        return True if tag == self.child_tag else False
-
-    def _show_tag(self, tag):
-        return True if all([tag, self.show_tags, self._relevant_data(self.tags, tag)]) else False
-
-    def _show_content(self):
-        return True if self.current_content else False
 
     # Call when an elements ends
     def endElement(self, tag):
@@ -67,3 +46,24 @@ class Saxtract(xml.sax.ContentHandler):
     def characters(self, content):
         if self._relevant_data(self.tags, self.current_tag):
             self.current_content += content
+
+    def _relevant_data(self, struct, data):
+        return True if data in struct or not struct else False
+
+    def _show_tag(self, tag):
+        return True if all([tag, self.show_tags, self._relevant_data(self.tags, tag)]) else False
+
+    def _show_content(self):
+        return True if self.current_content else False
+
+    def _add_newline(self, tag):
+        return True if tag == self.child_tag else False
+
+    def _output(self, content):
+        if self.outstream:
+            self.outstream.write(f'{content}')
+
+    def start(self):
+        if not self.ran:
+            self.ran = True
+            self.parser.parse(self.instream)
