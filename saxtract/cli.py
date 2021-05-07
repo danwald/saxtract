@@ -1,5 +1,5 @@
 """Console script for saxtract."""
-#!/usr/bin/env python3
+#!/usr/bin/env python3 # noqa: E265
 
 import sys
 import click
