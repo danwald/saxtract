@@ -13,9 +13,9 @@ from saxtract.saxtract import Saxtract
 @click.option('--tag', prompt='Enter the tag you wish to extract')
 def main(filename, tag):
     runs = 1
-    print(f'{filename} {tag} {globals()}')
     sax_time = Timer('sax(filename, tag)',
-                     setup=(f'filename={filename}; tag={tag};')
+                     setup=(f'filename="{filename}"; tag="{tag}";'),
+                     globals=globals(),
                      ).timeit(number=runs)
     dom_time = Timer('sax(filename, tag)',
                      f'from __main__ import sax; filename={filename}; tag={tag}').timeit(number=runs)
@@ -23,6 +23,7 @@ def main(filename, tag):
 
 
 def sax(filename, tag):
+    print(f'{filename} {tag}')
     with open(filename, 'r') as instream:
         pass
     pass
