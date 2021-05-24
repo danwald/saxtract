@@ -5,7 +5,7 @@ import sys
 
 import click
 
-from .saxtract import Saxtract
+from saxtract.saxtract import Saxtract
 
 
 @click.command()
