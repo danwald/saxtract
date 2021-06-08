@@ -2,6 +2,9 @@
 
 from timeit import Timer
 import sys
+from xml.dom.minidom import parse
+import xml.dom.minidom
+import os
 
 import click
 
@@ -31,8 +34,19 @@ def sax(filename, tag):
 
 def dom(filename, tag):
     with open(filename, 'r') as instream:
-        pass
-    pass
+        stdout = sys.stdout
+        sys.stdout = open(os.devnull, 'w')
+        try:
+            DOMTree = xml.dom.minidom.parse(instream)
+            collection = DOMTree.documentElement
+            tags = collection.getElementsByTagName(tag)
+            for user_tag in tags:
+                print(user_tag)
+        except Exception as e:
+            sys.stderr.write(f'Error occurred: {e}\n')
+            pass
+        finally:
+            sys.stdout = stdout
 
 
 if __name__ == "__main__":
