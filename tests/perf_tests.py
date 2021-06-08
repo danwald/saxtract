@@ -2,7 +2,6 @@
 
 import os
 import sys
-import xml.dom.minidom
 from timeit import Timer
 from xml.dom.minidom import parse
 import click
@@ -37,7 +36,7 @@ def dom(filename, tag):
         stdout = sys.stdout
         sys.stdout = open(os.devnull, 'w')
         try:
-            DOMTree = xml.dom.minidom.parse(instream)
+            DOMTree = parse(instream)
             collection = DOMTree.documentElement
             tags = collection.getElementsByTagName(tag)
             for user_tag in tags:
