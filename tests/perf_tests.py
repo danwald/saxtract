@@ -26,8 +26,7 @@ def main(filename, tag):
 def sax(filename, tag):
     print(f'{filename} {tag}')
     with open(filename, 'r') as instream:
-        pass
-    pass
+        Saxtract(tag, instream, open('/dev/null', 'w'), None, False, False).start()
 
 
 def dom(filename, tag):
