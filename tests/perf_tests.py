@@ -1,14 +1,14 @@
 #!/usr/bin/env python3 # noqa: E265
 
-from timeit import Timer
-import sys
-from xml.dom.minidom import parse
-import xml.dom.minidom
 import os
-
+import sys
+import xml.dom.minidom
+from timeit import Timer
+from xml.dom.minidom import parse
 import click
 
 from saxtract.saxtract import Saxtract
+
 
 @click.command()
 @click.option('--filename', prompt='Enter your test xml file')
