@@ -26,7 +26,6 @@ def main(filename, tag, runs):
 
 
 def sax(filename, tag):
-    print(f'{filename} {tag}')
     with open(filename, 'r') as instream:
         Saxtract(tag, instream, open(os.devnull, 'w'), None, False, False).start()
 
@@ -39,6 +38,7 @@ def dom(filename, tag):
             DOMTree = parse(instream)
             collection = DOMTree.documentElement
             tags = collection.getElementsByTagName(tag)
+            # for an apples to apples comparison
             for user_tag in tags:
                 print(user_tag)
         except Exception as e:
