@@ -24,7 +24,7 @@ Python SAX parser to extract xml
 
 
 * Free software: MIT license
-* Documentation: https://saxtract.readthedocs.io.
+* Documentation: https://saxtract.readthedocs.io
 
 
 Features
