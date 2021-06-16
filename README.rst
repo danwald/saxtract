@@ -32,7 +32,7 @@ Features
 
 Uses a SAXParser to maintain a fix memory footprint to parse and 'extract' tags from an  xml file and push it to an output stream.
 
-With `performance tests <tests/perf_tests.py>`_ on a trimmed down to 10k records from the `dbpl <https://dblp.org/xml/`_ dataset, SaxTrack ran in about half the time and half the `memory footprint <https://pypi.org/project/memory-profiler/>`_
+With `performance tests <tests/perf_tests.py>`_ on a trimmed down to 10k records from the `dbpl <https://dblp.org/xml/>`_ dataset, SaxTrack ran in about half the time and half the `memory footprint <https://pypi.org/project/memory-profiler/>`_
 
 .. code-block:: bash
     ╰─$ python tests/perf_tests.py --filename test.xml --tag authors
