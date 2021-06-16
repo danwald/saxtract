@@ -53,6 +53,4 @@ This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypack
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
 
-The main parser code was copied from
-
-.. _tutorialspoint: https://www.tutorialspoint.com/python3/python_xml_processing.htm
+The main parser code was copied from `tutorialspoint <https://www.tutorialspoint.com/python3/python_xml_processing.htm>`_
