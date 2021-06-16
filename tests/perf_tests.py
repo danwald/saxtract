@@ -12,8 +12,8 @@ from saxtract.saxtract import Saxtract
 @click.command()
 @click.option('--filename', prompt='Enter your test xml file')
 @click.option('--tag', prompt='Enter the tag you wish to extract')
-def main(filename, tag):
-    runs = 1
+@click.option('--runs', prompt='Enter the number of runs', default=5)
+def main(filename, tag, runs):
     sax_time = Timer('sax(filename, tag)',
                      setup=(f'from __main__ import sax, dom;filename="{filename}"; tag="{tag}";'),
                      globals=globals(),
