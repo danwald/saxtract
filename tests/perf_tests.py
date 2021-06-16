@@ -22,7 +22,7 @@ def main(filename, tag, runs):
                      setup=(f'from __main__ import sax, dom;filename="{filename}"; tag="{tag}";'),
                      globals=globals(),
                      ).timeit(number=runs)
-    print(f'Sax run took ~{sax_time}ms Dom run took ~{dom_time}ms')
+    print(f'\nSaxTrack run took ~{sax_time/runs}s\nDOM Parser run took ~{dom_time/runs}s')
 
 
 def sax(filename, tag):
