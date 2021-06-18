@@ -16,7 +16,8 @@ from .saxtract import Saxtract
 def main(tags, instream, outstream, child_tag, show_tags, verbose):
     """Console script for saxtract."""
     # override the default ContextHandler
-    handler = Saxtract(tags, instream, outstream, child_tag, show_tags, verbose)
+    handler = Saxtract(tags=tags, instream=instream, outstream=outstream,
+                       child_tag=child_tag, show_tags=show_tags, verbose=verbose)
     handler.start()
     return 0
 
