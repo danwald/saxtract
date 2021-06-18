@@ -13,7 +13,6 @@ SaxTract
         :target: https://saxtract.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-
 .. image:: https://pyup.io/repos/github/danwald/saxtract/shield.svg
      :target: https://pyup.io/repos/github/danwald/saxtract/
      :alt: Updates
@@ -35,15 +34,17 @@ Uses a SAXParser to maintain a fix memory footprint to parse and 'extract' tags 
 With `performance tests <tests/perf_tests.py>`_ on a trimmed down to 10k records from the `dbpl <https://dblp.org/xml/>`_ dataset, SaxTrack ran in about half the time and half the `memory footprint <https://pypi.org/project/memory-profiler/>`_
 
 .. code-block:: bash
-	python tests/perf_tests.py --filename test.xml --tag authors
-	Enter the number of runs [5]:
+
+	python tests/perf_tests.py --filename test.xml --tag authors --runs 5
 
 	SaxTrack run took ~0.05381571219999999s
 	DOM Parser run took ~0.09159613900000001s
 
 
-* TODO
-  - allow xsd/dtd input for validation
+Todo's
+------
+
+allow xsd/dtd input for validation
 
 Credits
 -------
