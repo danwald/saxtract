@@ -1,3 +1,4 @@
+import sys
 import xml.sax
 
 """Main module."""
@@ -5,7 +6,8 @@ import xml.sax
 
 
 class Saxtract(xml.sax.ContentHandler):
-    def __init__(self, tags, instream, outstream, child_tag, show_tags, verbose):
+    def __init__(self, *, tags=None, instream=sys.stdin, outstream=sys.stdout,
+                 child_tag=None, show_tags=False, verbose=0):
         self.tags = set(tags)
         self.instream = instream
         self.outstream = outstream
