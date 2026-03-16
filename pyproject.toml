@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "saxtract"
+version = "0.1.0"
+description = "Python SAX parser to extract xml"
+readme = "README.rst"
+license = { text = "MIT license" }
+authors = [{ name = "danny crasto", email = "danwald79@gmail.com" }]
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+]
+dependencies = ["Click>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/danwald/saxtract"
+
+[project.scripts]
+saxtract = "saxtract.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "bump2version>=0.5.11",
+    "wheel>=0.33.6",
+    "watchdog>=0.9.0",
+    "flake8>=3.7.8",
+    "tox>=3.14.0",
+    "coverage>=4.5.4",
+    "Sphinx>=1.8.5",
+    "twine>=1.14.0",
+    "pytest>=4.6.5",
+]
+
+[tool.setuptools.packages.find]
+include = ["saxtract", "saxtract.*"]
+
+[tool.flake8]
+exclude = ["docs"]
