@@ -1,7 +1,11 @@
 """Console script for saxtract."""
+from __future__ import annotations
+
 #!/usr/bin/env python3 # noqa: E265
 
 import sys
+from typing import IO, Optional
+
 import click
 from .saxtract import Saxtract
 
@@ -13,13 +17,13 @@ from .saxtract import Saxtract
 @click.option('--child-tag', default=None, help='xml tag of each record which will be split via newline')
 @click.option('--show-tags/--no-show-tags', default=False)
 @click.option('-v', '--verbose', count=True)
-def main(tags, instream, outstream, child_tag, show_tags, verbose):
+def main(tags: tuple[str, ...], instream: IO[str], outstream: IO[str],
+         child_tag: Optional[str], show_tags: bool, verbose: int) -> None:
     """Console script for saxtract."""
     # override the default ContextHandler
     handler = Saxtract(tags=tags, instream=instream, outstream=outstream,
                        child_tag=child_tag, show_tags=show_tags, verbose=verbose)
     handler.start()
-    return 0
 
 
 if __name__ == "__main__":

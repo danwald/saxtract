@@ -1,26 +1,41 @@
+from __future__ import annotations
+
 import sys
 import xml.sax
-from typing import Iterable, Optional, Set, Union
+import xml.sax.handler
+import xml.sax.xmlreader
+from typing import IO, Iterable, Optional, Set
 
 """Main module."""
 '''plagirised from https://www.tutorialspoint.com/python3/python_xml_processing.htm'''
 
 
 class Saxtract(xml.sax.ContentHandler):
-    def __init__(self, *, tags: Optional[Iterable[str]], instream=sys.stdin, outstream=sys.stdout,
-                 child_tag: Optional[str] = None, show_tags: bool = False, verbose: int = 0):
-        self.tags: Union(Set[str], None) = set(tags)
+    tags: Set[str]
+    instream: IO[str]
+    outstream: IO[str]
+    child_tag: Optional[str]
+    show_tags: bool
+    verbose: int
+    ran: bool
+    current_tag: str
+    current_content: str
+    parser: xml.sax.xmlreader.XMLReader
+
+    def __init__(self, *, tags: Optional[Iterable[str]], instream: IO[str] = sys.stdin, outstream: IO[str] = sys.stdout,
+                 child_tag: Optional[str] = None, show_tags: bool = False, verbose: int = 0) -> None:
+        self.tags = set(tags) if tags is not None else set()
         self.instream = instream
         self.outstream = outstream
-        self.child_tag: str = child_tag
-        self.show_tags: bool = show_tags
-        self.verbose: int = verbose
-        self.ran: bool = show_tags
+        self.child_tag = child_tag
+        self.show_tags = show_tags
+        self.verbose = verbose
+        self.ran = show_tags
 
         self.current_tag = ''
         self.current_content = ''
         if self.verbose:
-            self._output(f'Tags: {",".join(tags)}')
+            self._output(f'Tags: {",".join(self.tags)}')
 
         self._init_parser()
 
@@ -31,7 +46,7 @@ class Saxtract(xml.sax.ContentHandler):
         self.parser.setContentHandler(self)
 
         # Call when an element starts
-    def startElement(self, tag: str, attributes: str) -> None:
+    def startElement(self, tag: str, attributes: xml.sax.xmlreader.AttributesImpl) -> None:
         self.current_tag = tag
 
     # Call when an elements ends
@@ -50,7 +65,7 @@ class Saxtract(xml.sax.ContentHandler):
         if self._relevant_data(self.tags, self.current_tag):
             self.current_content += content
 
-    def _relevant_data(self, struct, data) -> bool:
+    def _relevant_data(self, struct: Set[str], data: str) -> bool:
         return True if data in struct or not struct else False
 
     def _show_tag(self, tag: str) -> bool:

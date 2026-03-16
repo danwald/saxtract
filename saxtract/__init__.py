@@ -1,4 +1,5 @@
 """Top-level package for SaxTract."""
+from __future__ import annotations
 
 __author__ = """danny crasto"""
 __email__ = 'danwald79@gmail.com'

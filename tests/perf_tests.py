@@ -1,4 +1,5 @@
 #!/usr/bin/env python3 # noqa: E265
+from __future__ import annotations
 
 import os
 import sys
@@ -13,7 +14,7 @@ from saxtract.saxtract import Saxtract
 @click.option('--filename', prompt='Enter your test xml file')
 @click.option('--tag', prompt='Enter the tag you wish to extract')
 @click.option('--runs', prompt='Enter the number of runs', default=5)
-def main(filename, tag, runs):
+def main(filename: str, tag: str, runs: int) -> None:
     sax_time = Timer('sax(filename, tag)',
                      setup=(f'from __main__ import sax, dom;filename="{filename}"; tag="{tag}";'),
                      globals=globals(),
@@ -25,12 +26,12 @@ def main(filename, tag, runs):
     print(f'\nSaxTrack run took ~{sax_time/runs}s\nDOM Parser run took ~{dom_time/runs}s')
 
 
-def sax(filename, tag):
+def sax(filename: str, tag: str) -> None:
     with open(filename, 'r') as instream:
         Saxtract(tags=[tag], instream=instream, outstream=open(os.devnull, 'w')).start()
 
 
-def dom(filename, tag):
+def dom(filename: str, tag: str) -> None:
     with open(filename, 'r') as instream:
         stdout = sys.stdout
         sys.stdout = open(os.devnull, 'w')

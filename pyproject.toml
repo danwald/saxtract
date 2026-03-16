@@ -9,7 +9,7 @@ description = "Python SAX parser to extract xml"
 readme = "README.rst"
 license = { text = "MIT license" }
 authors = [{ name = "danny crasto", email = "danwald79@gmail.com" }]
-requires-python = ">=3.8"
+requires-python = ">=3.13"
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Intended Audience :: Developers",
@@ -41,6 +41,14 @@ dev = [
 
 [tool.setuptools.packages.find]
 include = ["saxtract", "saxtract.*"]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.0",
+]
+
+[tool.mypy]
+strict = true
 
 [tool.flake8]
 exclude = ["docs"]
