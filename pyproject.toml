@@ -1,0 +1,36 @@
+[project]
+name = "saxtract"
+version = "0.2.0"
+description = "Python SAX parser to extract xml"
+authors = [
+    {name = "danny crasto", email = "danwald79@gmail.com"}
+]
+license = {text = "MIT license"}
+requires-python = ">=3.12"
+dependencies = [
+    "click",
+]
+
+[project.scripts]
+saxtract = "saxtract.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/danwald/saxtract"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+collect_ignore = ["setup.py"]
+
+[dependency-groups]
+dev = [
+    "bump2version",
+    "coverage",
+    "flake8",
+    "pytest",
+    "twine",
+    "watchdog",
+    "wheel",
+]
