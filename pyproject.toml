@@ -1,6 +1,6 @@
 [project]
 name = "saxtract"
-version = "0.1.0"
+version = "0.2.0"
 description = "Python SAX parser to extract xml"
 authors = [
     {name = "danny crasto", email = "danwald79@gmail.com"}
