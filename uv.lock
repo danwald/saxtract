@@ -626,17 +626,17 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "click", specifier = ">=7.0" }]
+requires-dist = [{ name = "click" }]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "bump2version", specifier = ">=1.0.1" },
-    { name = "coverage", specifier = ">=7.13.5" },
-    { name = "flake8", specifier = ">=7.3.0" },
-    { name = "pytest", specifier = ">=9.0.2" },
-    { name = "twine", specifier = ">=6.2.0" },
-    { name = "watchdog", specifier = ">=6.0.0" },
-    { name = "wheel", specifier = ">=0.46.3" },
+    { name = "bump2version" },
+    { name = "coverage" },
+    { name = "flake8" },
+    { name = "pytest" },
+    { name = "twine" },
+    { name = "watchdog" },
+    { name = "wheel" },
 ]
 
 [[package]]

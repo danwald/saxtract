@@ -8,7 +8,7 @@ authors = [
 license = {text = "MIT license"}
 requires-python = ">=3.12"
 dependencies = [
-    "click>=7.0",
+    "click",
 ]
 
 [project.scripts]
@@ -26,11 +26,11 @@ collect_ignore = ["setup.py"]
 
 [dependency-groups]
 dev = [
-    "bump2version>=1.0.1",
-    "coverage>=7.13.5",
-    "flake8>=7.3.0",
-    "pytest>=9.0.2",
-    "twine>=6.2.0",
-    "watchdog>=6.0.0",
-    "wheel>=0.46.3",
+    "bump2version",
+    "coverage",
+    "flake8",
+    "pytest",
+    "twine",
+    "watchdog",
+    "wheel",
 ]
