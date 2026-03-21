@@ -26,6 +26,30 @@ Python SAX parser to extract xml
 * Documentation: https://saxtract.readthedocs.io
 
 
+Installation
+------------
+
+Install from PyPI using `uv`::
+
+    uv add saxtract
+
+Or, to set up a local development environment::
+
+    uv sync
+
+
+Development
+-----------
+
+Run the test suite::
+
+    uv run pytest
+
+Run with coverage::
+
+    uv run coverage run -m pytest
+
+
 Features
 --------
 
